@@ -7,16 +7,12 @@ body,
   margin: 0;
   padding: 0;
 }
-
-html.dark {
-  background: #121212;
-  color-scheme: dark;
+main {
+  height: 100%;
 }
-
 #nprogress {
   pointer-events: none;
 }
-
 #nprogress .bar {
   background: rgb(13,148,136);
   opacity: 0.75;

@@ -15,15 +15,21 @@
     "up": "taze major -I"
   },
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@supabase/supabase-js": "^2.1.1",
     "@unocss/reset": "^0.46.5",
     "@vueuse/core": "^9.5.0",
     "@vueuse/head": "^1.0.18",
+    "axios": "^1.2.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.25",
+    "primeicons": "^6.0.1",
+    "primevue": "^3",
     "vue": "^3.2.45",
     "vue-demi": "^0.13.11",
     "vue-i18n": "^9.2.2",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "vue3-google-map": "^0.15.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.31.0",
@@ -33,6 +39,7 @@
     "@types/nprogress": "^0.2.0",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vue/test-utils": "^2.2.4",
+    "autoprefixer": "^10.4.13",
     "critters": "^0.0.16",
     "cross-env": "^7.0.3",
     "cypress": "^11.1.0",
@@ -42,7 +49,9 @@
     "markdown-it-link-attributes": "^4.0.1",
     "markdown-it-shiki": "^0.6.1",
     "pnpm": "^7.17.0",
+    "postcss": "^8.4.19",
     "shiki": "^0.11.1",
+    "tailwindcss": "^3.2.4",
     "taze": "^0.8.4",
     "typescript": "^4.9.3",
     "unocss": "^0.46.5",
