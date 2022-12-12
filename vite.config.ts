@@ -145,13 +145,12 @@ export default defineConfig({
   // https://github.com/antfu/vite-ssg
   ssgOptions: {
     script: 'async',
-    format: 'cjs',
     formatting: 'minify',
     onFinished() { generateSitemap() },
   },
 
   ssr: {
     // TODO: workaround until they support native ESM
-    noExternal: ['workbox-window', /vue-i18n/],
+    noExternal: ['workbox-window', /vue-i18n/, 'primevue', 'vue3-google-map'],
   },
 })

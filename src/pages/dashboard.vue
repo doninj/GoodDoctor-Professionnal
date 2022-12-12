@@ -36,5 +36,5 @@ onMounted(async () => {
 
 <route lang="yaml">
 meta:
-needAuth: true
+  needAuth: true
 </route>

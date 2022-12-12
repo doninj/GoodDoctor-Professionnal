@@ -1,8 +1,6 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
-import { useToast } from 'primevue/usetoast'
-const toast = useToast()
 const login = ref({
   email: '',
   password: '',
@@ -17,7 +15,6 @@ function submitLogin() {
     router.push({ path: '/dashboard' })
   }
   catch (e) {
-    toast.add({ severity: 'info', summary: 'Info Message', detail: e.message, life: 3000 })
   }
 }
 </script>
@@ -76,5 +73,5 @@ function submitLogin() {
 
 <route lang="yaml">
 meta:
-needAuth: false
+  needAuth: false
 </route>

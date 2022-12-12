@@ -30,7 +30,7 @@ onMounted(async () => {
 
 <template>
   <div>
-    <Dialog v-model:visible="isModal" :style="{ width: '450px' }" :modal="true" header="Header">
+    <Dialog v-if="patricien" v-model:visible="isModal" :style="{ width: '450px' }" :modal="true" header="Header">
       <div class="flex flex-col items-center">
         {{ patricien.username }}
         <Calendar v-model="calendar" placeholder="date" class="w-2/3" />
@@ -54,3 +54,8 @@ onMounted(async () => {
     </DataTable>
   </div>
 </template>
+
+<route lang="yaml">
+meta:
+  needAuth: true
+</route>

@@ -3,7 +3,7 @@ import { supabase } from '~/superbase.js'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    user: JSON.parse(localStorage.getItem('user')) || null,
+    user: null,
   }),
   getters: {
     getUsers(state) {
@@ -14,6 +14,11 @@ export const useAuthStore = defineStore('auth', {
     },
   },
   actions: {
+    async fetchUser() {
+      const { data } = await supabase.auth.getSession()
+      if (data)
+        this.user = (await supabase.from('profiles').select('*').eq('id', data.session.user.id).single()).data
+    },
     async login(user) {
       const { data, error } = await supabase.auth.signInWithPassword({
         email: user?.email,
@@ -21,8 +26,7 @@ export const useAuthStore = defineStore('auth', {
       })
       if (error)
         throw new Error(error.message)
-      user = await supabase.from('profiles').select('*').eq('id', data.session.user.id).single()
-      localStorage.setItem('user', JSON.stringify(user.data))
+      this.user = (await supabase.from('profiles').select('*').eq('id', data.session.user.id).single()).data
       return data
     },
     async register(user) {
@@ -34,15 +38,13 @@ export const useAuthStore = defineStore('auth', {
         throw new Error(error.message)
       const { data } = await supabase.auth.getSession()
       if (data)
-        user = supabase.from('profiles').select('*').eq('id', data.session.user.id).single()
-      localStorage.setItem('user', JSON.stringify(user))
+        this.user = (await supabase.from('profiles').select('*').eq('id', data.session.user.id).single()).data
     },
     async logout() {
       const { error } = await supabase.auth.signOut()
       if (error)
         throw new Error(error.message)
       this.user = null
-      localStorage.setItem('user', null)
     },
   },
 })
