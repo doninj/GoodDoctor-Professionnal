@@ -6,7 +6,7 @@ import AutoComplete from 'primevue/autocomplete'
 // import Badge from 'primevue/badge'
 import Button from 'primevue/button'
 // import Breadcrumb from 'primevue/breadcrumb'
-// import Calendar from 'primevue/calendar'
+import Calendar from 'primevue/calendar'
 // import Card from 'primevue/card'
 // import Carousel from 'primevue/carousel'
 // import Chart from 'primevue/chart'
@@ -14,14 +14,14 @@ import Button from 'primevue/button'
 // import Chip from 'primevue/chip'
 // import Chips from 'primevue/chips'
 // import ColorPicker from 'primevue/colorpicker'
-// import Column from 'primevue/column'
-// import ConfirmDialog from 'primevue/confirmdialog'
+import Column from 'primevue/column'
+import ConfirmDialog from 'primevue/confirmdialog'
 // import ConfirmPopup from 'primevue/confirmpopup'
 // import ContextMenu from 'primevue/contextmenu'
-// import DataTable from 'primevue/datatable'
+import DataTable from 'primevue/datatable'
 // import DataView from 'primevue/dataview'
 // import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions'
-// import Dialog from 'primevue/dialog'
+import Dialog from 'primevue/dialog'
 // import Divider from 'primevue/divider'
 // import Dropdown from 'primevue/dropdown'
 // import Fieldset from 'primevue/fieldset'
@@ -67,6 +67,7 @@ import Password from 'primevue/password'
 // import Textarea from 'primevue/textarea'
 // import Timeline from 'primevue/timeline'
 import Toast from 'primevue/toast'
+import FullCalendar from 'primevue/fullcalendar'
 // import Toolbar from 'primevue/toolbar'
 // import TabView from 'primevue/tabview'
 // import TabPanel from 'primevue/tabpanel'
@@ -111,22 +112,22 @@ export const install: UserModule = ({ app, isClient }) => {
   // app.component('Badge', Badge)
   // app.component('Breadcrumb', Breadcrumb)
   app.component('Button', Button)
-  // app.component('Calendar', Calendar)
-  // app.component('Card', Card)
+  app.component('Calendar', Calendar)
+  // app.component('Card', C  ard)
   // app.component('Carousel', Carousel)
   // app.component('Chart', Chart)
   // app.component('Checkbox', Checkbox)
   // app.component('Chip', Chip)
   // app.component('Chips', Chips)
   // app.component('ColorPicker', ColorPicker)
-  // app.component('Column', Column)
-  // app.component('ConfirmDialog', ConfirmDialog)
+  app.component('Column', Column)
+  app.component('ConfirmDialog', ConfirmDialog)
   // app.component('ConfirmPopup', ConfirmPopup)
   // app.component('ContextMenu', ContextMenu)
-  // app.component('DataTable', DataTable)
+  app.component('DataTable', DataTable)
   // app.component('DataView', DataView)
   // app.component('DataViewLayoutOptions', DataViewLayoutOptions)
-  // app.component('Dialog', Dialog)
+  app.component('Dialog', Dialog)
   // app.component('Divider', Divider)
   // app.component('Dropdown', Dropdown)
   // app.component('Fieldset', Fieldset)

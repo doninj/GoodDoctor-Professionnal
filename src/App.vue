@@ -22,5 +22,6 @@ useHead({
 </script>
 
 <template>
+  <Toast />
   <RouterView />
 </template>

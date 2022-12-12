@@ -15,6 +15,7 @@
     "up": "taze major -I"
   },
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.11.3",
     "@supabase/supabase-js": "^2.1.1",
     "@unocss/reset": "^0.46.5",
     "@vueuse/core": "^9.5.0",
@@ -27,7 +28,8 @@
     "vue": "^3.2.45",
     "vue-demi": "^0.13.11",
     "vue-i18n": "^9.2.2",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "vue3-google-map": "^0.15.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.31.0",

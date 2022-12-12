@@ -1,17 +1,13 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
+
 const adresse = ref()
 const suggestionsAdresses = ref([])
 const login = ref({
   email: '',
   password: '',
-  adresse: {
-    ville: '',
-    codePostal: '',
-    rue: '',
-    numero: '',
-  },
+  adresse: null,
 })
 
 function searchAdresse(event) {
@@ -21,11 +17,13 @@ function searchAdresse(event) {
       text: event.query,
     },
   }).then((res) => {
-    suggestionsAdresses.value = res.data.features.map(feature => feature.properties.formatted)
+    suggestionsAdresses.value = res.data.features.map(feature => feature.properties)
   })
 }
+
 const auth = useAuthStore()
 const router = useRouter()
+
 function submitRegister() {
   auth.register(login.value).then((res) => {
   })
@@ -43,7 +41,7 @@ function submitRegister() {
         >
       </div>
       <div class="md:w-8/12 lg:w-5/12 lg:ml-20">
-        <form @submit="submitRegister">
+        <form @submit.prevent="submitRegister">
           <!-- Email input -->
           <div class="mb-6">
             <input
@@ -65,8 +63,9 @@ function submitRegister() {
           </div>
           <div class="mb-6">
             <AutoComplete
-              v-model="adresse"
-              class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              v-model="login.adresse"
+              option-label="formatted"
+              class="w-full"
               placeholder="numero de rue"
               :suggestions="suggestionsAdresses"
               @complete="searchAdresse"
@@ -92,6 +91,12 @@ function submitRegister() {
     </div>
   </div>
 </template>
+
+<style>
+.p-inputtext {
+  width: 100% !important;
+}
+</style>
 
 <route lang="yaml">
 meta:

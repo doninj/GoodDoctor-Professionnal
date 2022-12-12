@@ -6,6 +6,9 @@ export const useAuthStore = defineStore('auth', {
     user: JSON.parse(localStorage.getItem('user')) || null,
   }),
   getters: {
+    getUsers(state) {
+      return state.user
+    },
     isLoggedIn(state) {
       return !!state.user
     },
@@ -18,8 +21,8 @@ export const useAuthStore = defineStore('auth', {
       })
       if (error)
         throw new Error(error.message)
-      user = supabase.from('profiles').select('*').eq('id', data.session.user.id).single()
-      localStorage.setItem('user', JSON.stringify(user))
+      user = await supabase.from('profiles').select('*').eq('id', data.session.user.id).single()
+      localStorage.setItem('user', JSON.stringify(user.data))
       return data
     },
     async register(user) {

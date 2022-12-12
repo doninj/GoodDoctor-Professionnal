@@ -1,7 +1,8 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
-
+import { useToast } from 'primevue/usetoast'
+const toast = useToast()
 const login = ref({
   email: '',
   password: '',
@@ -11,8 +12,13 @@ const auth = useAuthStore()
 const router = useRouter()
 
 function submitLogin() {
-  console.log(login.value)
-  auth.login(login.value)
+  try {
+    auth.login(login.value)
+    router.push({ path: '/dashboard' })
+  }
+  catch (e) {
+    toast.add({ severity: 'info', summary: 'Info Message', detail: e.message, life: 3000 })
+  }
 }
 </script>
 
