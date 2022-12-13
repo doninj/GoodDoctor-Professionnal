@@ -24,8 +24,11 @@ export const useAuthStore = defineStore('auth', {
         email: user?.email,
         password: user?.password,
       })
-      if (error)
+      if (error) {
+        navigator.vibrate(100)
         throw new Error(error.message)
+      }
+
       this.user = (await supabase.from('profiles').select('*').eq('id', data.session.user.id).single()).data
       return data
     },
