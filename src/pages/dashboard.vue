@@ -20,7 +20,7 @@ onMounted(async () => {
 <template>
   <div class="flex flex-row">
     <GoogleMap api-key="AIzaSyDny_wisQF1y9tIPCKBpyzCSqlgTHWNod4" style="width: 50%; height: 500px" :center="center" :zoom="15">
-      <Marker :options="{ position: center }" />
+      <Marker v-for="appointment in appointments" :key="appointment.id" :options="{ position: { lat: appointment.practitioner_id.adresses_id.lat, lng: appointment.practitioner_id.adresses_id.long } }" />
     </GoogleMap>
     <DataTable class="w-2/3" :value="appointments">
       <template #header>

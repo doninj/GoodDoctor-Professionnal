@@ -11,8 +11,9 @@ const router = useRouter()
 
 function submitLogin() {
   try {
-    auth.login(login.value)
-    router.push({ path: '/dashboard' })
+    auth.login(login.value).then(() => {
+      router.push({ path: '/dashboard' })
+    })
   }
   catch (e) {
   }

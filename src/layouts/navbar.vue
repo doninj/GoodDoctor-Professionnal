@@ -4,6 +4,12 @@ import { useAuthStore } from '~/store/auth.js'
 
 const auth = useAuthStore()
 const route = useRouter()
+
+function logout() {
+  auth.logout().then(() => {
+    route.push('/')
+  })
+}
 </script>
 
 <template>
@@ -45,7 +51,7 @@ const route = useRouter()
             >Liste des praticiens</a>
           </li>
           <li>
-            <Button v-if="auth.user" @click="auth.logout">
+            <Button v-if="auth.user" @click="logout">
               Deconnnexion
             </Button>
           </li>
