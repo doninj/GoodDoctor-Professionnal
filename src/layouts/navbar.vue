@@ -20,7 +20,7 @@ function logout() {
         @click="route.push({ path: '/dashboard' })"
       >
         <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Flowbite Logo">
-        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Good Doctor</span>
+        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Good Doctor Pro</span>
       </a>
       <button
         data-collapse-toggle="navbar-default" type="button"
@@ -47,8 +47,8 @@ function logout() {
             <a
               class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
               aria-current="page"
-              @click="route.push({ path: '/ListDoctor' })"
-            >Liste des praticiens</a>
+              @click="route.push({ path: '/list-appointment' })"
+            >Liste de mes rendez-vous</a>
           </li>
           <li>
             <Button v-if="auth.user" @click="logout">

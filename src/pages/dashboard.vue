@@ -3,7 +3,6 @@ import '@fullcalendar/core/vdom' // solves problem with Vite
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import { GoogleMap, Marker } from 'vue3-google-map'
-import interactionPlugin from '@fullcalendar/interaction' // for selectable
 import { supabase } from '~/superbase.js'
 
 const auth = useAuthStore()
@@ -15,7 +14,7 @@ const appointmentClickable = ref()
 const appointmentModal = ref(false)
 const user = ref()
 const calendarOptions = ref({
-  plugins: [dayGridPlugin, interactionPlugin],
+  plugins: [dayGridPlugin],
   initialView: 'dayGridMonth',
   weekends: true,
   selectable: true,
@@ -32,11 +31,11 @@ function logout() {
 onMounted(async () => {
   const adresses = await supabase.from('adresses_users').select('*').eq('id', auth.user.adresses_id)
   center.value = { lat: adresses.data[0].lat, lng: adresses.data[0].long }
-  const appointment = await supabase.from('appointments').select('*, practitioner_id(*, adresses_id(*))').eq('user_id', auth.user.id).eq('validate_appointment', true)
+  const appointment = await supabase.from('appointments').select('*, user_id(*,adresses_id(*)), practitioner_id(*, adresses_id(*))').eq('practitioner_id', auth.user.id)
   appointments.value = appointment.data
   calendarOptions.value.events = appointment.data.map((app) => {
     return {
-      title: app.practitioner_id.username,
+      title: app.user_id.username,
       start: app.date,
     }
   })
@@ -54,7 +53,7 @@ onMounted(async () => {
       </div>
     </Dialog>
     <GoogleMap api-key="AIzaSyDny_wisQF1y9tIPCKBpyzCSqlgTHWNod4" style="width: 50%; height: 500px" :center="center" :zoom="15">
-      <Marker v-for="appointment in appointments" :key="appointment.id" :options="{ position: { lat: appointment.practitioner_id.adresses_id.lat, lng: appointment.practitioner_id.adresses_id.long } }" />
+      <Marker v-for="appointment in appointments" :key="appointment.id" :options="{ position: { lat: appointment.user_id.adresses_id.lat, lng: appointment.user_id.adresses_id.long } }" />
     </GoogleMap>
     <FullCalendar class="w-3/6" :options="calendarOptions" />
   </div>
