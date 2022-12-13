@@ -1,6 +1,8 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '~/store/auth.js'
 
+const auth = useAuthStore()
 const route = useRouter()
 </script>
 
@@ -41,6 +43,11 @@ const route = useRouter()
               aria-current="page"
               @click="route.push({ path: '/ListDoctor' })"
             >Liste des praticiens</a>
+          </li>
+          <li>
+            <Button v-if="auth.user" @click="auth.logout">
+              Deconnnexion
+            </Button>
           </li>
         </ul>
       </div>

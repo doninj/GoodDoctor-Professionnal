@@ -5,7 +5,7 @@ export const install: UserModule = ({ isClient, router }) => {
     const auth = useAuthStore()
     router.beforeEach((to, from, next) => {
       if (to.meta.needAuth === true && !auth.isLoggedIn)
-        next('/login')
+        next('/')
       else if (to.meta.needAuth === false && auth.isLoggedIn)
         next('/')
       else
