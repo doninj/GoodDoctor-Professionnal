@@ -19,6 +19,7 @@ async function sendRdv() {
       date: calendar.value,
       user_id: auth.user.id,
       practitioner_id: patricien.value.id,
+      validate_appointment: false,
     },
   ])
 }
@@ -42,7 +43,7 @@ onMounted(async () => {
         <div style="text-align: left" />
       </template>
       <Column field="username" header="Patricien" />
-      <Column field="profession" header="Proffesion" />
+      <Column field="profession" header="Profession" />
       <Column :exportable="false" style="min-width:8rem">
         <template #body="slotProps">
           <Button
